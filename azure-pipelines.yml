@@ -24,7 +24,6 @@ steps:
     backendAzureRmStorageAccountName: 'tfstatetostille'
     backendAzureRmContainerName: 'state'
     backendAzureRmKey: 'terraform.tfstate'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/infra'
     
 - task: TerraformTaskV1@0
   inputs:

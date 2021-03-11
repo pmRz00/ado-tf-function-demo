@@ -30,3 +30,9 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)/infra'
     environmentServiceNameAzureRM: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
     
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/infra'
+    environmentServiceNameAzureRM: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'

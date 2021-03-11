@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
+    backendAzureRmResourceGroupName: 'ado-tf-function-demo'
+    backendAzureRmStorageAccountName: 'tfstatetostille'
+    backendAzureRmContainerName: 'state'
+    backendAzureRmKey: 'terraform.tfstate'
+    
+- task: TerraformTaskV1@0
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'

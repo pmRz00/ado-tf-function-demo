@@ -34,7 +34,6 @@ resource "azurerm_storage_account" "storage" {
 
 resource "azurerm_storage_container" "storage_container" {
   name = "func"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
   storage_account_name = "${azurerm_storage_account.storage.name}"
   container_access_type = "private"
 }
@@ -62,8 +61,8 @@ data "azurerm_storage_account_sas" "storage_sas" {
     table = false
     file = false
   }
-  start = "2018–03–21"
-  expiry = "2028–03–21"
+  start  = "2018-03-21T00:00:00Z"
+  expiry = "2028-03-21T00:00:00Z"
   permissions {
     read = true
     write = false
@@ -94,11 +93,11 @@ resource "azurerm_function_app" "function" {
   app_service_plan_id = "${azurerm_app_service_plan.plan.id}"
   storage_connection_string = "${azurerm_storage_account.storage.primary_connection_string}"
   version = "~2"
-  app_settings {
-    FUNCTIONS_WORKER_RUNTIME = "python"
-    FUNCTION_APP_EDIT_MODE = "readonly"
-    https_only = true
-    HASH = "${base64sha256(file("./dist/azure.zip"))}"
-    WEBSITE_RUN_FROM_PACKAGE = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.storage_container.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_sas.storage_sas.sas}"
+  app_settings = {
+    "FUNCTIONS_WORKER_RUNTIME" = "python"
+    "FUNCTION_APP_EDIT_MODE" = "readonly"
+    "https_only" = true
+    "HASH" = "${base64sha256(file("./dist/azure.zip"))}"
+    "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.storage_container.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_sas.storage_sas.sas}"
   }
 }

@@ -78,7 +78,7 @@ resource "azurerm_app_service_plan" "plan" {
   name = "${random_string.app_service_plan_name.result}"
   location = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
-  kind = "functionapp"
+  kind = "Linux"
   sku {
     tier = "Dynamic"
     size = "Y1"
@@ -91,7 +91,8 @@ resource "azurerm_function_app" "function" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
   app_service_plan_id = "${azurerm_app_service_plan.plan.id}"
   storage_connection_string = "${azurerm_storage_account.storage.primary_connection_string}"
-  version = "~2"
+  version = "~3"
+  os_type = "linux"
   app_settings = {
     "FUNCTIONS_WORKER_RUNTIME" = "python"
     "FUNCTION_APP_EDIT_MODE" = "readonly"

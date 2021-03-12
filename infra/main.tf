@@ -3,8 +3,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name = "${var.azure_resource_group_name}"
-  location = "${var.azure_region}"
+  name = "demo-tostille-func"
+  location = "westeurope"
 }
 
 resource "random_string" "storage_name" {

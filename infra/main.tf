@@ -93,7 +93,7 @@ resource "azurerm_function_app" "function" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
   app_service_plan_id = "${azurerm_app_service_plan.plan.id}"
   storage_connection_string = "${azurerm_storage_account.storage.primary_connection_string}"
-  "version" = "~2"
+  version = "~2"
   app_settings {
     "FUNCTIONS_WORKER_RUNTIME" = "python"
     "FUNCTION_APP_EDIT_MODE" = "readonly"

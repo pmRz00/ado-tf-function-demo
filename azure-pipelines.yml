@@ -14,8 +14,8 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src'
-    includeRootFolder: true
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src/'
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(System.DefaultWorkingDirectory)/dist/azure.zip'
     replaceExistingArchive: true

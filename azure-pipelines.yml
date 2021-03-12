@@ -11,6 +11,16 @@ pool:
 
 steps:
 
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(System.DefaultWorkingDirectory)/dist/azure.zip'
+    replaceExistingArchive: true
+    verbose: true'
+
 - task: TerraformTaskV1@0
   inputs:
     provider: 'azurerm'

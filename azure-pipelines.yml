@@ -46,6 +46,11 @@ steps:
     provider: 'azurerm'
     command: 'plan'
     commandOptions: '-out=tfplan.out'
+    backendServiceArm: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
+    backendAzureRmResourceGroupName: 'ado-tf-function-demo'
+    backendAzureRmStorageAccountName: 'tfstatetostille'
+    backendAzureRmContainerName: 'state'
+    backendAzureRmKey: 'terraform.tfstate'
     workingDirectory: '$(System.DefaultWorkingDirectory)/infra'
     environmentServiceNameAzureRM: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
     
@@ -53,5 +58,10 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
+    backendServiceArm: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
+    backendAzureRmResourceGroupName: 'ado-tf-function-demo'
+    backendAzureRmStorageAccountName: 'tfstatetostille'
+    backendAzureRmContainerName: 'state'
+    backendAzureRmKey: 'terraform.tfstate'
     workingDirectory: '$(System.DefaultWorkingDirectory)/infra'
     environmentServiceNameAzureRM: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'

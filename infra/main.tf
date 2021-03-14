@@ -1,3 +1,12 @@
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "ado-tf-function-demo"
+    storage_account_name  = "tfstatetostille"
+    container_name        = "state"
+    key                   = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   features {}
 }

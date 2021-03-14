@@ -100,5 +100,6 @@ resource "azurerm_function_app" "function" {
     "https_only" = true
     "HASH" = "${base64sha256(filebase64("../dist/azure.zip"))}"
     "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.storage_container.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_sas.storage_sas.sas}"
+    "demofunctrigger_STORAGE" = "${azurerm_storage_account.storage.primary_connection_string}"
   }
 }

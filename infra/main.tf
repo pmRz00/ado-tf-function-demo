@@ -106,6 +106,7 @@ resource "azurerm_function_app" "function" {
     "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.storage_container.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_sas.storage_sas.sas}"
     "demofunctrigger_STORAGE" = "${azurerm_storage_account.storage.primary_connection_string}"
     "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.function-appinsights.instrumentation_key}"
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING" = "${azurerm_storage_account.storage.primary_connection_string}"
   }
 }
 
@@ -127,6 +128,7 @@ resource "azurerm_function_app_slot" "function-slot" {
     "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.storage_container.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_sas.storage_sas.sas}"
     "demofunctrigger_STORAGE" = "${azurerm_storage_account.storage.primary_connection_string}"
     "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.function-appinsights.instrumentation_key}"
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING" = "${azurerm_storage_account.storage.primary_connection_string}"
   }
 }
 

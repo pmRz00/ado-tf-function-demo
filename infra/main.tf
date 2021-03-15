@@ -105,5 +105,14 @@ resource "azurerm_function_app" "function" {
     "HASH" = "${base64sha256(filebase64("../dist/azure.zip"))}"
     "WEBSITE_RUN_FROM_PACKAGE" = "https://${azurerm_storage_account.storage.name}.blob.core.windows.net/${azurerm_storage_container.storage_container.name}/${azurerm_storage_blob.storage_blob.name}${data.azurerm_storage_account_sas.storage_sas.sas}"
     "demofunctrigger_STORAGE" = "${azurerm_storage_account.storage.primary_connection_string}"
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.function-appinsights.instrumentation_key}"
+
   }
+}
+
+resource "azurerm_application_insights" "function-appinsights" {
+  name                = "tf-function-appinsights"
+  location            = "${azurerm_resource_group.rg.location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  application_type    = "other"
 }

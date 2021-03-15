@@ -82,7 +82,7 @@ resource "azurerm_app_service_plan" "plan" {
   name = "${random_string.app_service_plan_name.result}"
   location = "${azurerm_resource_group.rg.location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
-  kind = "functionapp"
+  kind = "FunctionApp"
   reserved = true
   sku {
     tier = "Dynamic"

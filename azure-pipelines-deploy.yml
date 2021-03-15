@@ -27,16 +27,7 @@ steps:
     appName: '6xwlo486rqxr7o2a'
     deployToSlotOrASE: true
     resourceGroupName: 'demo-tostille-func'
-    slotName: '6xwlo486rqxr7o2a-stg'
     package: '$(System.DefaultWorkingDirectory)/dist/azure.zip'
     runtimeStack: 'PYTHON|3.8'
-    
-- task: AzureAppServiceManage@0
-  inputs:
-    azureSubscription: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
-    Action: 'Swap Slots'
-    WebAppName: '6xwlo486rqxr7o2a'
-    ResourceGroupName: 'demo-tostille-func'
-    SourceSlot: '6xwlo486rqxr7o2a-stg'
 
 

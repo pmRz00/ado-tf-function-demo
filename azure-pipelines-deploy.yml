@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(System.DefaultWorkingDirectory)/dist/azure.zip'
+    replaceExistingArchive: true
+    verbose: true
+  
+- task: AzureFunctionApp@1
+  inputs:
+    azureSubscription: 'Internal Consumption tostille(7d5e75b2-656e-4a96-b12f-24e2e79a8279)'
+    appType: 'functionAppLinux'
+    appName: '6xwlo486rqxr7o2a'
+    package: '$(System.DefaultWorkingDirectory)/dist/azure.zip'
+    runtimeStack: 'PYTHON|3.8'
+
